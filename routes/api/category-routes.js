@@ -48,7 +48,8 @@ router.post('/', async (req, res) => {
     console.error(err);
 
     res.status(500).json({ error: 'Failed to create category' });
-  }});
+  }
+});
 
 
 router.put('/:id', async (req, res) => {
@@ -77,10 +78,10 @@ router.delete('/:id', async (req, res) => {
   const categoryId = req.params.id;
 
   try {
-    const numRowsDeleted = await Category.destroy({
+    const catIdRowDeleted = await Category.destroy({
       where: { id: categoryId }
     });
-    if (numRowsDeleted === 0) {
+    if (catIdRowDeleted === 0) {
       return res.status(404).json({ error: 'Category not found' });
     }
     res.status(204).end();
